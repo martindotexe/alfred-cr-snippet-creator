@@ -2,7 +2,6 @@ from os import mkdir, rename, path, walk
 from shutil import copyfile, rmtree
 import zipfile
 from secrets import token_hex
-import csv
 import json
 
 RESULT_COLLECTION_NAME = "My New Snippet Collection"
