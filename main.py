@@ -9,20 +9,19 @@ RESULT_COLLECTION_NAME = "My New Snippet Collection"
 
 
 def build_json_files():
-    source_file = "snippets.csv"
-    fieldnames = ["name", "keyword", "content"]
+    source_file = "snippets.txt"
 
-    with open(source_file, newline='', encoding="utf-8-sig") as csv_file:
-        reader = csv.DictReader(csv_file, fieldnames=fieldnames)
-        for row in reader:
+    with open(source_file, newline='', encoding="utf-8-sig") as file:
+        rows = [line.split("\t") for line in file.readlines()]
+        for row in rows:
             uid = token_hex(15)
             output = json.dumps(
                 {
                     "alfredsnippet": {
-                        "snippet": row["content"],
+                        "snippet": row[1],
                         "uid": uid,
-                        "keyword": row["keyword"],
-                        "name": row["name"],
+                        "keyword": row[0],
+                        "name": row[1],
                     },
                 },
                 sort_keys=False,
@@ -30,7 +29,7 @@ def build_json_files():
                 separators=(',', ': '),
             )
             output_file = RESULT_COLLECTION_NAME + \
-                "/" + row["name"] + " [" + uid + "].json"
+                "/" + row[1].replace("/", "") + " [" + uid + "].json"
             with open(output_file, "w") as f:
                 f.write(output)
 
