@@ -4,8 +4,6 @@ import zipfile
 from secrets import token_hex
 import json
 
-RESULT_COLLECTION_NAME = "My New Snippet Collection"
-
 
 def build_json_files(file_name, values):
     for row in values:
