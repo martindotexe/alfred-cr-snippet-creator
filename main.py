@@ -60,7 +60,7 @@ def collect_files():
 
 file_data = collect_files()
 for key, values in file_data.items():
-    file_name = key.replace(".txt", "")
+    file_name = f'cr/{key.replace(".txt", "")}'
     mkdir(file_name)
     copyfile("./info.plist", "./" + file_name + "/info.plist")
     build_json_files(file_name, values)
