@@ -3,6 +3,7 @@ from shutil import copyfile, rmtree
 import zipfile
 from secrets import token_hex
 import json
+from re import search
 
 
 def build_json_files(file_name, values):
@@ -51,7 +52,7 @@ def collect_files():
             if file.endswith(".txt"):
                 with open(f"{root}/{file}") as f:
                     data[file] = [tuple(line.strip().split("\t"))
-                                  for line in f.readlines()]
+                                  for line in f.readlines() if bool(search(r".+\t.+", line))]
     return data
 
 
