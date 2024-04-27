@@ -52,7 +52,8 @@ def collect_files():
             if file.endswith(".txt"):
                 with open(f"{root}/{file}") as f:
                     data[file] = [tuple(line.strip().split("\t"))
-                                  for line in f.readlines() if bool(search(r".+\t.+", line))]
+                                  for line in f.readlines()
+                                  if bool(search(r".+\t.+", line))]
     return data
 
 
